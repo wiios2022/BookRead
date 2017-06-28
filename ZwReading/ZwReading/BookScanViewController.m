@@ -31,6 +31,8 @@
                                                                            target:self.navigationController
                                                                            action:@selector(popViewControllerAnimated:)];
     
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    
     self.bookTxtView.layoutManager.allowsNonContiguousLayout = NO;
     
     [self loadFileList];
