@@ -58,13 +58,31 @@
             {
                 NSLog(@"old height : %f", oldHeight);
                 
+                /*
+                if (oldHeight < self.bookTxtView.contentSize.height)
+                {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [self.bookTxtView setContentOffset:CGPointMake(0, oldHeight) animated:NO];
+                    }];
+                }
+                else
+                {
+                    // 如果上一次已经读完，则新的一次进入文章开头
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [self.bookTxtView setContentOffset:CGPointMake(0, -64) animated:NO];
+                    }];
+                }
+                 */
+                
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.bookTxtView setContentOffset:CGPointMake(0, oldHeight) animated:NO];
                 }];
             }
             else
             {
-                [self.bookTxtView scrollsToTop];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.bookTxtView setContentOffset:CGPointMake(0, -64) animated:NO];
+                }];
             }
         }
     }
