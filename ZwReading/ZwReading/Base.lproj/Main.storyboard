@@ -85,17 +85,28 @@
                                     <outlet property="delegate" destination="lNQ-j8-Nr0" id="zfw-Sa-ozs"/>
                                 </connections>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Aej-D3-Rtx">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="5Xz-5A-hgM"/>
+                                    <constraint firstAttribute="height" constant="37" id="BN5-8p-dDh"/>
+                                </constraints>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="A4V-CL-WmZ" firstAttribute="top" secondItem="onN-Tc-BPd" secondAttribute="top" id="Hag-uG-Ohn"/>
+                            <constraint firstItem="Aej-D3-Rtx" firstAttribute="centerX" secondItem="A4V-CL-WmZ" secondAttribute="centerX" id="cdw-wP-Rh1"/>
                             <constraint firstAttribute="trailing" secondItem="A4V-CL-WmZ" secondAttribute="trailing" id="e5c-xb-gMC"/>
                             <constraint firstItem="A4V-CL-WmZ" firstAttribute="leading" secondItem="onN-Tc-BPd" secondAttribute="leading" id="hWb-St-LjM"/>
                             <constraint firstItem="D1s-bW-nnh" firstAttribute="top" secondItem="A4V-CL-WmZ" secondAttribute="bottom" id="jFm-Zm-oMR"/>
+                            <constraint firstItem="Aej-D3-Rtx" firstAttribute="centerY" secondItem="A4V-CL-WmZ" secondAttribute="centerY" id="o8N-Ja-tWa"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bookTxtView" destination="A4V-CL-WmZ" id="937-6B-xhX"/>
+                        <outlet property="loadingView" destination="Aej-D3-Rtx" id="jjB-ow-sKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9OC-Hn-Hoh" userLabel="First Responder" sceneMemberID="firstResponder"/>

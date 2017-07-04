@@ -12,6 +12,7 @@
 @interface BookScanViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *bookTxtView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
 
 @end
 
@@ -33,9 +34,15 @@
     
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     
+    [self.loadingView startAnimating];
+    self.bookTxtView.hidden = YES;
     self.bookTxtView.layoutManager.allowsNonContiguousLayout = NO;
     
-    [self loadFileList];
+    // 用异步线程，避免阻塞主线程
+    dispatch_queue_t maiQueue = dispatch_get_main_queue();
+    dispatch_async(maiQueue, ^{
+        [self loadFileList];
+    });
 }
 
 - (void)loadFileList
@@ -60,12 +67,18 @@
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.bookTxtView setContentOffset:CGPointMake(0, oldHeight) animated:NO];
+                    self.bookTxtView.hidden = NO;
+                    [self.loadingView stopAnimating];
+                    [self.loadingView removeFromSuperview];
                 }];
             }
             else
             {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.bookTxtView setContentOffset:CGPointMake(0, -64) animated:NO];
+                    self.bookTxtView.hidden = NO;
+                    [self.loadingView stopAnimating];
+                    [self.loadingView removeFromSuperview];
                 }];
             }
         }
