@@ -93,11 +93,24 @@
                                 </constraints>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUb-EE-Svm">
+                                <rect key="frame" x="315" y="615" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="8kN-Ug-dDs"/>
+                                    <constraint firstAttribute="width" constant="44" id="Vg2-Ly-gpL"/>
+                                </constraints>
+                                <state key="normal" image="icon_top"/>
+                                <connections>
+                                    <action selector="btnBackTopAction:" destination="lNQ-j8-Nr0" eventType="touchUpInside" id="DeO-ZH-pvZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="A4V-CL-WmZ" firstAttribute="top" secondItem="onN-Tc-BPd" secondAttribute="top" id="Hag-uG-Ohn"/>
+                            <constraint firstItem="mUb-EE-Svm" firstAttribute="top" secondItem="A4V-CL-WmZ" secondAttribute="bottom" constant="-52" id="Sg4-HV-bAb"/>
                             <constraint firstItem="Aej-D3-Rtx" firstAttribute="centerX" secondItem="A4V-CL-WmZ" secondAttribute="centerX" id="cdw-wP-Rh1"/>
+                            <constraint firstItem="mUb-EE-Svm" firstAttribute="leading" secondItem="A4V-CL-WmZ" secondAttribute="trailing" constant="-60" id="ctW-T1-4J9"/>
                             <constraint firstAttribute="trailing" secondItem="A4V-CL-WmZ" secondAttribute="trailing" id="e5c-xb-gMC"/>
                             <constraint firstItem="A4V-CL-WmZ" firstAttribute="leading" secondItem="onN-Tc-BPd" secondAttribute="leading" id="hWb-St-LjM"/>
                             <constraint firstItem="D1s-bW-nnh" firstAttribute="top" secondItem="A4V-CL-WmZ" secondAttribute="bottom" id="jFm-Zm-oMR"/>
@@ -105,6 +118,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backTopButton" destination="mUb-EE-Svm" id="eYB-rf-nD7"/>
                         <outlet property="bookTxtView" destination="A4V-CL-WmZ" id="937-6B-xhX"/>
                         <outlet property="loadingView" destination="Aej-D3-Rtx" id="jjB-ow-sKT"/>
                     </connections>
@@ -114,4 +128,7 @@
             <point key="canvasLocation" x="932" y="136.28185907046478"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_top" width="44" height="44"/>
+    </resources>
 </document>

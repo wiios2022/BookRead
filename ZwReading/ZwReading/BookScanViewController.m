@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *bookTxtView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
+@property (weak, nonatomic) IBOutlet UIButton *backTopButton;
 
 @end
 
@@ -71,6 +72,16 @@
                     [self.loadingView stopAnimating];
                     [self.loadingView removeFromSuperview];
                 }];
+                
+                CGFloat offsetY = self.bookTxtView.contentOffset.y;
+                if (offsetY + self.bookTxtView.bounds.size.height >= self.bookTxtView.contentSize.height)
+                {
+                    self.backTopButton.hidden = NO;
+                }
+                else
+                {
+                    self.backTopButton.hidden = YES;
+                }
             }
             else
             {
@@ -85,27 +96,47 @@
     }
 }
 
+- (IBAction)btnBackTopAction:(id)sender
+{
+    [self.bookTxtView setContentOffset:CGPointMake(0, -64) animated:YES];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    NSLog(@"save height : %f", scrollView.contentOffset.y);
-    [[MemoryManager sharedInstance] saveHeight:scrollView.contentOffset.y book:self.bookName];
-}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSLog(@"1111save height : %f", scrollView.contentOffset.y);
-    [[MemoryManager sharedInstance] saveHeight:scrollView.contentOffset.y book:self.bookName];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    [[MemoryManager sharedInstance] saveHeight:offsetY book:self.bookName];
+    
+    if (offsetY + scrollView.bounds.size.height >= scrollView.contentSize.height)
+    {
+        self.backTopButton.hidden = NO;
+    }
+    else
+    {
+        self.backTopButton.hidden = YES;
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     NSLog(@"22222save height : %f", scrollView.contentOffset.y);
-    [[MemoryManager sharedInstance] saveHeight:scrollView.contentOffset.y book:self.bookName];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    [[MemoryManager sharedInstance] saveHeight:offsetY book:self.bookName];
+    
+    if (offsetY + scrollView.bounds.size.height >= scrollView.contentSize.height)
+    {
+        self.backTopButton.hidden = NO;
+    }
+    else
+    {
+        self.backTopButton.hidden = YES;
+    }
 }
 
 /*
